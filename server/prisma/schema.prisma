@@ -1,0 +1,24 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Booking {
+  id              Int      @id @default(autoincrement())
+  purpose         String   // "for what"
+  contactName     String   // "contact person name"
+  contactPhone    String   // "contact person mobile no."
+  totalAmount     Float    // "total payable amount"
+  tokenAmount     Float    // "token paid"
+  tokenDate       DateTime // "token payment date"
+  remainingAmount Float    // auto-calculated (totalAmount - tokenAmount)
+  status          String   @default("Booked with Token") // Booked with Token, Booked without Token, Completed, Cancelled
+  isLocked        Boolean  @default(true) // Locked rows require unlock before edit
+  notes           String?  // optional remarks
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
