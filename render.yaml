@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: maulik-urmi-ki-shadi
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PIN
+        value: "2702"
