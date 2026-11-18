@@ -32,9 +32,9 @@ export const getBookings = async (req: Request, res: Response) => {
 
     if (search && typeof search === 'string') {
       whereClause.OR = [
-        { purpose: { contains: search } },
-        { contactName: { contains: search } },
-        { contactPhone: { contains: search } },
+        { purpose: { contains: search, mode: 'insensitive' } },
+        { contactName: { contains: search, mode: 'insensitive' } },
+        { contactPhone: { contains: search, mode: 'insensitive' } },
       ];
     }
 
